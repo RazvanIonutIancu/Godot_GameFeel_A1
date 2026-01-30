@@ -102,7 +102,7 @@ public partial class Player : CharacterBody3D
 		{
 			if (airTimer.IsStopped() || velocity.Y > 0)
             {
-                velocity += GetGravity() * (float)delta;
+                velocity.Y += GetGravity().Y * (float)delta;
             }
 
 			if (canCoyote)
@@ -227,6 +227,8 @@ public partial class Player : CharacterBody3D
 		forward.Y = 0.0f;
         direction += inputDir.Y * forward.Normalized();
 
+        // Copy, to change only X and Z
+        Vector3 newVelocity;
         //Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized() * Camera.Transform.Basis.Z;
         if (direction != Vector3.Zero)
 		{
@@ -240,13 +242,16 @@ public partial class Player : CharacterBody3D
                     break;
 
                 case Movement_Type.CONSTANT:
-                    velocity = velocity.MoveToward(direction * maxSpeed, acceleration * 2 * (float)delta);
+                    newVelocity = velocity.MoveToward(direction * maxSpeed, acceleration * 2 * (float)delta);
+                    velocity.X = newVelocity.X;
+                    velocity.Z = newVelocity.Z;
                     break;
 
                 case Movement_Type.EASE:
-                    velocity = velocity.Lerp(direction * maxSpeed, acceleration * 0.5f * (float)delta);
+                    newVelocity = velocity.Lerp(direction * maxSpeed, acceleration * 0.5f * (float)delta);
+                    velocity.X = newVelocity.X;
+                    velocity.Z = newVelocity.Z;
                     break;
-
             }
 
 		}
@@ -264,11 +269,15 @@ public partial class Player : CharacterBody3D
                     break;
 
                 case Movement_Type.CONSTANT:
-                    velocity = velocity.MoveToward(direction * 0, acceleration * 2 * (float)delta);
+                    newVelocity = velocity.MoveToward(direction * 0, acceleration * 2 * (float)delta);
+                    velocity.X = newVelocity.X;
+                    velocity.Z = newVelocity.Z;
                     break;
 
                 case Movement_Type.EASE:
-                    velocity = velocity.Lerp(direction * 0, acceleration * 0.5f * (float)delta);
+                    newVelocity = velocity.Lerp(direction * 0, acceleration * 0.5f * (float)delta);
+                    velocity.X = newVelocity.X;
+                    velocity.Z = newVelocity.Z;
                     break;
 
             }
