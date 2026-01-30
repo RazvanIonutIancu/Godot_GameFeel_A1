@@ -56,6 +56,12 @@ text = "Controls:
 W, A, S, D           - Movement
 Space                  - Jump
 Down Arrow:    - Crouch
+1, 2, 3                  - Acceleration modes
+
+Acceleration modes:
+1 - Instant
+2 - Constant
+3 - Ease -in/-out
 "
 
 [node name="CoyoteTimer" type="Timer" parent="."]
