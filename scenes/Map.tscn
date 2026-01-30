@@ -24,6 +24,9 @@ preJumpTimer = NodePath("../PreJumpTimer")
 playerInstance = NodePath(".")
 verticalRay = NodePath("ShapeCast3D")
 
+[node name="ShapeCast3D" parent="Player" index="2"]
+debug_shape_custom_color = Color(0.6219784, 0.6601315, 0, 1)
+
 [node name="map_ground" parent="." instance=ExtResource("1_5hauk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.591463, -0.5, 3.5)
 

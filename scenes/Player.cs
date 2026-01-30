@@ -177,6 +177,8 @@ public partial class Player : CharacterBody3D
         {
             playerInstance.Scale -= crouchScale * 0.3f;
             if (playerInstance.Scale.Y < 0.5f) playerInstance.Scale = originalScale - crouchScale;
+
+
         }
         else
         {
@@ -184,18 +186,28 @@ public partial class Player : CharacterBody3D
         }
 
 
+        // **DEBUG**
+        //if  (verticalRay.IsColliding())
+        //{
+        //    GD.Print("Ray is colliding!");
+        //}
+
+        if (unCrouchAnimation) GD.Print("Uncrouching");
+        if (crouchAnimation) GD.Print("Crouching");
+
         // Uncrouch animation
         if (playerInstance.Scale.Y < 1.0f && unCrouchAnimation && !crouchAnimation && !verticalRay.IsColliding())
         {
             playerInstance.Scale += crouchScale * 0.3f;
             if (playerInstance.Scale.Y > 1.0f) playerInstance.Scale = originalScale;
+
+
         }
-        else
+        else if (playerInstance.Scale.Y >= 1.0f)
         {
             unCrouchAnimation = false;
 
         }
-
 
 
 
@@ -264,7 +276,7 @@ public partial class Player : CharacterBody3D
         }
 
 
-        GD.Print(velocity);
+        //GD.Print(velocity);
 
 
         if (direction.Length() > 0.1f)
@@ -290,7 +302,7 @@ public partial class Player : CharacterBody3D
         DebugDraw3D.DrawSphere(direction + meshInstance.GlobalPosition, 0.5f, Colors.Red);
 			
 
-
+        verticalRay.GlobalPosition = playerInstance.GlobalPosition + new Vector3(0f, 1.1f, 0f);
 
         Velocity = velocity;
 		MoveAndSlide();
