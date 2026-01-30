@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsho3peii1tsi"]
+
+[ext_resource type="PackedScene" uid="uid://s7lsoljt6y2j" path="res://scenes/map_ground.tscn" id="1_5hauk"]
+[ext_resource type="Script" uid="uid://dof2da2gcq2hp" path="res://scenes/Player.cs" id="2_41ykk"]
+[ext_resource type="PackedScene" uid="uid://dbjnbrm2kq0nx" path="res://scenes/map_block_1.tscn" id="2_lajc7"]
+[ext_resource type="PackedScene" uid="uid://cjsp0kd6nc4wi" path="res://scenes/map_stairs.tscn" id="3_xkm8s"]
+[ext_resource type="PackedScene" uid="uid://cu3p1t260gv46" path="res://scenes/player.tscn" id="4_tm3qm"]
+[ext_resource type="PackedScene" uid="uid://cdsq3jurugxrx" path="res://scenes/map_arc.tscn" id="5_yyirk"]
+
+[node name="MapNode" type="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.022353351, 0.7573425, 0.6526351, 0.3280539, -0.62220955, 0.71079946, 0.94439447, 0.19821072, -0.26235762, 50, 50, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." node_paths=PackedStringArray("Camera", "meshInstance", "coyoteTimer", "airTimer", "preJumpTimer", "playerInstance", "verticalRay") instance=ExtResource("4_tm3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5429173, 0, 0.45556927)
+script = ExtResource("2_41ykk")
+Camera = NodePath("../Camera3D")
+meshInstance = NodePath("MeshInstance3D")
+coyoteTimer = NodePath("../CoyoteTimer")
+airTimer = NodePath("../AirTimer")
+preJumpTimer = NodePath("../PreJumpTimer")
+playerInstance = NodePath(".")
+verticalRay = NodePath("ShapeCast3D")
+
+[node name="map_ground" parent="." instance=ExtResource("1_5hauk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.591463, -0.5, 3.5)
+
+[node name="map_cube_3" parent="." instance=ExtResource("2_lajc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.783156, 5, -1.5)
+
+[node name="map_cube_2" parent="." instance=ExtResource("2_lajc7")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -6.227521, 1.5, 5)
+
+[node name="map_stairs" parent="." instance=ExtResource("3_xkm8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3801937, -0.1247735, 6.5)
+
+[node name="map_arc" parent="." instance=ExtResource("5_yyirk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.979618, 0, 1.610857)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.6462439, -0.5396151, 0.5396151, 0, 0.7071068, 0.70710677, -0.763131, -0.4569634, 0.4569634, 10.849455, 14.95, 11.299117)
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AirTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="PreJumpTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[editable path="Player"]
