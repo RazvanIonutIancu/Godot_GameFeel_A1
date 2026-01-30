@@ -45,6 +45,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.979618, 0, 1.610857)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.6462439, -0.5396151, 0.5396151, 0, 0.7071068, 0.70710677, -0.763131, -0.4569634, 0.4569634, 10.849455, 14.95, 11.299117)
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D"]
+custom_minimum_size = Vector2(0.755, 2.8)
+offset_right = 244.0
+offset_bottom = 752.0
+
+[node name="Label" type="Label" parent="Camera3D/VBoxContainer"]
+layout_mode = 2
+text = "Controls:
+W, A, S, D           - Movement
+Space                  - Jump
+Down Arrow:    - Crouch
+"
+
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true

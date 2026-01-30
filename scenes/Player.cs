@@ -192,8 +192,8 @@ public partial class Player : CharacterBody3D
         //    GD.Print("Ray is colliding!");
         //}
 
-        if (unCrouchAnimation) GD.Print("Uncrouching");
-        if (crouchAnimation) GD.Print("Crouching");
+        //if (unCrouchAnimation) GD.Print("Uncrouching");
+        //if (crouchAnimation) GD.Print("Crouching");
 
         // Uncrouch animation
         if (playerInstance.Scale.Y < 1.0f && unCrouchAnimation && !crouchAnimation && !verticalRay.IsColliding())
@@ -285,21 +285,21 @@ public partial class Player : CharacterBody3D
             
         }
 
-        DebugDraw3D.DrawArrow(Vector3.Zero, latestValidInput * 3, Colors.Yellow, 0.5f, true);
+        //DebugDraw3D.DrawArrow(Vector3.Zero, latestValidInput * 3, Colors.Yellow, 0.5f, true);
 
         Basis meshBasis = meshInstance.Basis;
 		Vector3 meshForward = meshInstance.GlobalBasis.Z;
         slerpedInput = slerpedInput.Slerp(latestValidInput, (float)delta * 10);
 
-        DebugDraw3D.DrawArrow(Vector3.Zero, meshForward * 3, Colors.Blue, 0.5f, true);
-        DebugDraw3D.DrawArrow(Vector3.Zero, slerpedInput * 3, Colors.Red, 0.5f, true);
+        //DebugDraw3D.DrawArrow(Vector3.Zero, meshForward * 3, Colors.Blue, 0.5f, true);
+        //DebugDraw3D.DrawArrow(Vector3.Zero, slerpedInput * 3, Colors.Red, 0.5f, true);
 
       
 
         meshInstance.LookAt(slerpedInput + meshInstance.GlobalPosition, Vector3.Up); // meshInstance.GlobalPosition
 		
 
-        DebugDraw3D.DrawSphere(direction + meshInstance.GlobalPosition, 0.5f, Colors.Red);
+        //DebugDraw3D.DrawSphere(direction + meshInstance.GlobalPosition, 0.5f, Colors.Red);
 			
 
         verticalRay.GlobalPosition = playerInstance.GlobalPosition + new Vector3(0f, 1.1f, 0f);
